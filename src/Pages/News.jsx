@@ -303,6 +303,7 @@ const News = () => {
                   "table",
                   "media",
                   "emoticons",
+                  "lists",
                 ],
                 toolbar:
                   "undo redo | formatselect | bold italic underline forecolor backcolor | " +
@@ -311,6 +312,9 @@ const News = () => {
                 advlist_number_styles:
                   "default,lower-alpha,lower-greek,lower-roman,upper-alpha,upper-roman",
                 advlist_bullet_styles: "default,circle,disc,square",
+                menu: {
+                  tools: { title: "Tools", items: "listprops" },
+                },
               }}
               onEditorChange={handleDescriptionChange}
             />
