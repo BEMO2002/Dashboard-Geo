@@ -3,22 +3,26 @@ import {
   FaHome,
   FaNewspaper,
   FaProjectDiagram,
-  FaEnvelope,
-  FaDownload,
   FaSignOutAlt,
   FaPhone,
 } from "react-icons/fa";
+import { IoHomeOutline } from "react-icons/io5";
+import { IoMailUnreadOutline } from "react-icons/io5";
+import { GoProjectSymlink } from "react-icons/go";
 import logo from "../assets/dashboard/Picture1.png";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
-
+import { TbLockPassword } from "react-icons/tb";
+import { PiNewspaperClippingLight } from "react-icons/pi";
+import { GrProjects } from "react-icons/gr";
 const navLinks = [
-  { name: "Home", icon: <FaHome />, href: "/" },
-  { name: "News", icon: <FaNewspaper />, href: "/news" },
-  { name: "Projects", icon: <FaProjectDiagram />, href: "/projects" },
-  { name: "Contact", icon: <FaPhone />, href: "/contact" },
-  { name: "Download Files", icon: <FaDownload />, href: "#" },
+  { name: "Home", icon: <IoHomeOutline />, href: "/" },
+  { name: "News", icon: <PiNewspaperClippingLight />, href: "/news" },
+  { name: "Projects", icon: <GrProjects />, href: "/projects" },
+  { name: "Solutions", icon: <GoProjectSymlink />, href: "#" },
+  { name: "Contact", icon: <IoMailUnreadOutline />, href: "/contact" },
+  { name: "Change Password", icon: <TbLockPassword />, href: "/change" },
 ];
 
 const SideBar = () => {
@@ -44,18 +48,18 @@ const SideBar = () => {
           {navLinks.map((link) => {
             const isActive = location.pathname === link.href;
             return (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  className={`w-full flex items-center gap-3 font-medium transition-colors rounded-lg px-4 py-2 justify-start ${
-                    isActive
-                      ? "bg-gray-500 text-white"
-                      : "hover:bg-gray-500 hover:text-white text-gray-800"
-                  }`}
-                >
-                  {React.cloneElement(link.icon, { className: "text-lg" })}
-                  {link.name}
-                </a>
+              <li key={link.name} >
+<a
+  href={link.href}
+  className={`w-full uppercase flex items-center gap-3 font-medium transition-colors rounded-lg px-4 py-2 justify-start text-sm whitespace-nowrap overflow-hidden text-ellipsis ${
+    isActive
+      ? "bg-gray-500 text-white"
+      : "hover:bg-gray-500 hover:text-white text-gray-800"
+  }`}
+>
+  {React.cloneElement(link.icon, { className: "text-lg" })}
+  {link.name}
+</a>
               </li>
             );
           })}

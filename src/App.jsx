@@ -11,6 +11,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import News from "./Pages/News";
 import Projects from "./Pages/Projects";
 import ContactMessage from "./Pages/ContactMessage";
+import ChangePassword from "./Pages/ChangePassword";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/news" element={<News />} />
             <Route path="/projects" element={<Projects/>} />
             <Route path="/contact" element={<ContactMessage/>} />
+            <Route path="/change" element={<ChangePassword/>} />
           </Route>
         </Routes>
       </BrowserRouter>
