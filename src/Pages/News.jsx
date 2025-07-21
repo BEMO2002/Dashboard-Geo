@@ -23,6 +23,7 @@ const News = () => {
   const { token } = useAuth();
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [form, setForm] = useState(initialForm);
@@ -114,6 +115,7 @@ const News = () => {
   // Handle add/edit submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoadingSubmit(true);
     // Prepare form data
     const formData = new FormData();
     formData.append("Title", form.title);
@@ -144,6 +146,8 @@ const News = () => {
       closeModal();
     } catch {
       toast.error("Failed to save news.");
+    } finally {
+      setLoadingSubmit(false);
     }
   };
 
@@ -352,10 +356,10 @@ const News = () => {
           <button
             type="submit"
             className="w-full bg-primary text-white hover:text-primary py-2 rounded font-semibold hover:bg-white border border-primary transition-colors flex items-center justify-center gap-2"
-            disabled={loading}
+            disabled={loadingSubmit}
           >
-            {loading && (
-              <span className="animate-spin inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full"></span>
+            {loadingSubmit && (
+              <span className="animate-spin inline-block w-5 h-5 border-2 border-primary border-t-transparent rounded-full"></span>
             )}
             {editMode ? "Update News" : "Add News"}
           </button>
