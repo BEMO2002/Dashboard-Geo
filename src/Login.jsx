@@ -72,7 +72,7 @@ const Login = () => {
           <label className="block text-baseTwo mb-2 font-semibold">Email</label>
           <input
             type="email"
-            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50 text-gray-900 placeholder-gray-400 transition"
+            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none  bg-gray-50 text-gray-900 placeholder-gray-400 transition"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -87,7 +87,7 @@ const Login = () => {
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
-              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50 text-gray-900 placeholder-gray-400 pr-10 transition"
+              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none  bg-gray-50 text-gray-900 placeholder-gray-400 pr-10 transition"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

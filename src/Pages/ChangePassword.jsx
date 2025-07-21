@@ -50,7 +50,7 @@ const ChangePassword = () => {
           <div className="relative">
             <input
               type={showCurrent ? "text" : "password"}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary pr-10"
+              className="w-full px-4 py-2 border rounded focus:outline-none  pr-10"
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
               required
@@ -72,7 +72,7 @@ const ChangePassword = () => {
           <div className="relative">
             <input
               type={showNew ? "text" : "password"}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary pr-10"
+              className="w-full px-4 py-2 border rounded focus:outline-none f pr-10"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               required
