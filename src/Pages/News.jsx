@@ -293,17 +293,24 @@ const News = () => {
               apiKey="es4j3e2f7014oap60ne58m90xgsr0iu8e6hzy6joeffi2ybr"
               value={form.description}
               init={{
-                height: 200,
-                menubar: false,
+                height: 300,
+                menubar: true,
                 plugins: [
                   "advlist autolink lists link image charmap print preview anchor",
                   "searchreplace visualblocks code fullscreen",
                   "insertdatetime media table paste code help wordcount",
+                  "code",
+                  "table",
+                  "media",
+                  "emoticons",
                 ],
                 toolbar:
-                  "undo redo | formatselect | bold italic backcolor | \
-                  alignleft aligncenter alignright alignjustify | \
-                  bullist numlist outdent indent | removeformat | help",
+                  "undo redo | formatselect | bold italic underline forecolor backcolor | " +
+                  "alignleft aligncenter alignright alignjustify | " +
+                  "bullist numlist advlist | outdent indent | link image media table emoticons | code | removeformat | help",
+                advlist_number_styles:
+                  "default,lower-alpha,lower-greek,lower-roman,upper-alpha,upper-roman",
+                advlist_bullet_styles: "default,circle,disc,square",
               }}
               onEditorChange={handleDescriptionChange}
             />
