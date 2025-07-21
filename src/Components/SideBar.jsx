@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  FaHome,
-  FaNewspaper,
-  FaProjectDiagram,
-  FaSignOutAlt,
-  FaPhone,
-} from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
 import { IoHomeOutline } from "react-icons/io5";
 import { IoMailUnreadOutline } from "react-icons/io5";
 import { GoProjectSymlink } from "react-icons/go";
@@ -16,12 +10,14 @@ import { useLocation } from "react-router-dom";
 import { TbLockPassword } from "react-icons/tb";
 import { PiNewspaperClippingLight } from "react-icons/pi";
 import { GrProjects } from "react-icons/gr";
+import { TbFileCv } from "react-icons/tb";
 const navLinks = [
   { name: "Home", icon: <IoHomeOutline />, href: "/" },
   { name: "News", icon: <PiNewspaperClippingLight />, href: "/news" },
   { name: "Projects", icon: <GrProjects />, href: "/projects" },
-  { name: "Solutions", icon: <GoProjectSymlink />, href: "#" },
+  { name: "Solutions", icon: <GoProjectSymlink />, href: "/solutions" },
   { name: "Contact", icon: <IoMailUnreadOutline />, href: "/contact" },
+  { name: "Career Cv", icon: <TbFileCv />, href: "/career" },
   { name: "Change Password", icon: <TbLockPassword />, href: "/change" },
 ];
 
@@ -48,18 +44,18 @@ const SideBar = () => {
           {navLinks.map((link) => {
             const isActive = location.pathname === link.href;
             return (
-              <li key={link.name} >
-<a
-  href={link.href}
-  className={`w-full uppercase flex items-center gap-3 font-medium transition-colors rounded-lg px-4 py-2 justify-start text-sm whitespace-nowrap overflow-hidden text-ellipsis ${
-    isActive
-      ? "bg-gray-500 text-white"
-      : "hover:bg-gray-500 hover:text-white text-gray-800"
-  }`}
->
-  {React.cloneElement(link.icon, { className: "text-lg" })}
-  {link.name}
-</a>
+              <li key={link.name}>
+                <a
+                  href={link.href}
+                  className={`w-full uppercase flex items-center gap-3 font-medium transition-colors rounded-lg px-4 py-2 justify-start text-sm whitespace-nowrap overflow-hidden text-ellipsis ${
+                    isActive
+                      ? "bg-gray-500 text-white"
+                      : "hover:bg-gray-500 hover:text-white text-gray-800"
+                  }`}
+                >
+                  {React.cloneElement(link.icon, { className: "text-lg" })}
+                  {link.name}
+                </a>
               </li>
             );
           })}
