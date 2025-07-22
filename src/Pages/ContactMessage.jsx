@@ -83,6 +83,7 @@ const ContactMessage = () => {
                 <th className="py-3 px-4 font-semibold text-sm">Email</th>
                 <th className="py-3 px-4 font-semibold text-sm">Phone</th>
                 <th className="py-3 px-4 font-semibold text-sm">Message</th>
+                <th className="py-3 px-4 font-semibold text-sm">CV</th>
                 <th className="py-3 px-4 font-semibold text-sm">Date</th>
                 <th className="py-3 px-4 font-semibold text-sm">Action</th>
               </tr>
@@ -117,6 +118,21 @@ const ContactMessage = () => {
                       </>
                     ) : (
                       msg.message
+                    )}
+                  </td>
+                  <td className="py-2.5 px-4 text-center">
+                    {msg.asset?.url ? (
+                      <a
+                        href={msg.asset.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block px-3 py-1 bg-primary text-white rounded hover:bg-primary-dark transition text-xs font-semibold"
+                        title="Preview or Download CV"
+                      >
+                        View CV
+                      </a>
+                    ) : (
+                      <span className="text-gray-400 text-xs">No CV</span>
                     )}
                   </td>
                   <td className="py-2.5 px-4 text-xs text-gray-400 font-medium">
