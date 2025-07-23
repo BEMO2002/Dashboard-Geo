@@ -201,7 +201,7 @@ const Solutions = () => {
     try {
       if (editMode && selectedId) {
         await axios.put(
-          "https://geoduke.runasp.net/api/admin/solutions",
+          "https://api.geoduke.com/admin/solutions",
           formData,
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -210,7 +210,7 @@ const Solutions = () => {
         toast.success("Solution updated successfully!");
       } else {
         await axios.post(
-          "https://geoduke.runasp.net/api/admin/solutions",
+          "https://api.geoduke.com/admin/solutions",
           formData,
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -233,7 +233,7 @@ const Solutions = () => {
       return;
     try {
       await axios.delete(
-        `https://geoduke.runasp.net/api/admin/solutions/${id}`,
+        `https://api.geoduke.com/admin/solutions/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

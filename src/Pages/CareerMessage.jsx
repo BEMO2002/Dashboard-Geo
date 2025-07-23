@@ -31,7 +31,7 @@ const CareerMessage = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        "https://geoduke.runasp.net/api/admin/careermessages",
+        "https://api.geoduke.com/admin/careermessages",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -49,12 +49,9 @@ const CareerMessage = () => {
     if (!window.confirm("Are you sure you want to delete this message?"))
       return;
     try {
-      await axios.delete(
-        `https://api.geoduke.com/admin/careermessages/${id}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await axios.delete(`https://api.geoduke.com/admin/careermessages/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       toast.success("Message deleted successfully!");
       fetchMessages();
     } catch {

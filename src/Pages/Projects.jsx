@@ -157,7 +157,7 @@ const Projects = () => {
     try {
       if (editMode && selectedId) {
         await axios.put(
-          "https://geoduke.runasp.net/api/admin/projects",
+          "https://api.geoduke.com/admin/projects",
           formData,
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -166,7 +166,7 @@ const Projects = () => {
         toast.success("Project updated successfully!");
       } else {
         await axios.post(
-          "https://geoduke.runasp.net/api/admin/projects",
+          "https://api.geoduke.com/admin/projects",
           formData,
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -189,7 +189,7 @@ const Projects = () => {
       return;
     try {
       await axios.delete(
-        `https://geoduke.runasp.net/api/admin/projects/${id}`,
+        `https://api.geoduke.com/admin/projects/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

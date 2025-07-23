@@ -41,7 +41,7 @@ const News = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `https://geoduke.runasp.net/api/admin/news?pageNumber=${page}&pageSize=${pageSize}`,
+        `https://api.geoduke.com/admin/news?pageNumber=${page}&pageSize=${pageSize}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -126,19 +126,15 @@ const News = () => {
       if (editMode && selectedId) {
         // Edit news (PUT endpoint expects id in form-data, not in URL)
         formData.append("id", selectedId);
-        await axios.put("https://geoduke.runasp.net/api/admin/news", formData, {
+        await axios.put("https://api.geoduke.com/admin/news", formData, {
           headers: { Authorization: `Bearer ${token}` },
         });
         toast.success("News updated successfully!");
       } else {
         // Add news
-        await axios.post(
-          "https://geoduke.runasp.net/api/admin/news",
-          formData,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        await axios.post("https://api.geoduke.com/admin/news", formData, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         toast.success("News added successfully!");
       }
       fetchNews();
@@ -155,7 +151,7 @@ const News = () => {
     if (!window.confirm("Are you sure you want to delete this news item?"))
       return;
     try {
-      await axios.delete(`https://geoduke.runasp.net/api/admin/news/${id}`, {
+      await axios.delete(`https://api.geoduke.com/admin/news/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success("News deleted successfully!");

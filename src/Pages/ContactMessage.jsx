@@ -56,7 +56,7 @@ const ContactMessage = () => {
       return;
     try {
       await axios.delete(
-        `https://geoduke.runasp.net/api/admin/contactmessages/${id}`,
+        `https://api.geoduke.com/admin/contactmessages/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
