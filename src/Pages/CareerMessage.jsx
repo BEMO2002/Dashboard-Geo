@@ -50,7 +50,7 @@ const CareerMessage = () => {
       return;
     try {
       await axios.delete(
-        `https://geoduke.runasp.net/api/admin/careermessages/${id}`,
+        `https://api.geoduke.com/admin/careermessages/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

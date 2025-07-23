@@ -40,7 +40,7 @@ const Solutions = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `https://geoduke.runasp.net/api/admin/solutions?pageSize=${pageSize}&pageNumber=${page}`,
+        `https://api.geoduke.com/admin/solutions?pageSize=${pageSize}&pageNumber=${page}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

@@ -37,7 +37,7 @@ const ContactMessage = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        "https://geoduke.runasp.net/api/admin/contactmessages",
+        "https://api.geoduke.com/admin/contactmessages",
         {
           headers: { Authorization: `Bearer ${token}` },
         }

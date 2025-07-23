@@ -21,7 +21,7 @@ const Login = () => {
     setError("");
     try {
       const response = await axios.post(
-        "https://geoduke.runasp.net/api/admin/account/login",
+        "https://api.geoduke.com/admin/account/login",
         {
           Email: email,
           Password: password,

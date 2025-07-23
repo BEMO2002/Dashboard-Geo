@@ -39,7 +39,7 @@ const Projects = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `https://geoduke.runasp.net/api/admin/projects?pageSize=${pageSize}&pageNumber=${page}`,
+        `https://api.geoduke.com/admin/projects?pageSize=${pageSize}&pageNumber=${page}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

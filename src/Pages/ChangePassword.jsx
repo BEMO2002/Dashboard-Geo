@@ -17,7 +17,7 @@ const ChangePassword = () => {
     setLoading(true);
     try {
       await axios.put(
-        "https://geoduke.runasp.net/api/admin/account/change-password",
+        "https://api.geoduke.com/admin/account/change-password",
         {
           currentPassword,
           newPassword,

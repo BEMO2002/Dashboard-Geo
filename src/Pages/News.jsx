@@ -8,8 +8,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { Editor } from "@tinymce/tinymce-react";
 Modal.setAppElement("#root");
 
-const API_URL =
-  "https://geoduke.runasp.net/api/admin/news?pageNumber=1&pageSize=10";
+const API_URL = "https://api.geoduke.com/admin/news?pageNumber=1&pageSize=10";
 
 const initialForm = {
   title: "",
