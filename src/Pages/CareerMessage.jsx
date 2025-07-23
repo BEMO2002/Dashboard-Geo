@@ -1,22 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
-import Modal from "react-modal";
-
-Modal.setAppElement("#root");
+import { FaTrash } from "react-icons/fa";
 
 const PAGE_SIZE = 10;
 
-const ContactMessage = () => {
+const CareerMessage = () => {
   const { token } = useAuth();
   const [allMessages, setAllMessages] = useState([]);
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showModal, setShowModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState("");
-  const [modalTitle, setModalTitle] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -37,7 +31,7 @@ const ContactMessage = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        "https://geoduke.runasp.net/api/admin/contactmessages",
+        "https://geoduke.runasp.net/api/admin/careermessages",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -45,7 +39,7 @@ const ContactMessage = () => {
       setAllMessages(res.data);
       setPage(1); // reset to first page on reload
     } catch {
-      toast.error("Failed to fetch messages.");
+      toast.error("Failed to fetch career messages.");
     } finally {
       setLoading(false);
     }
@@ -56,7 +50,7 @@ const ContactMessage = () => {
       return;
     try {
       await axios.delete(
-        `https://geoduke.runasp.net/api/admin/contactmessages/${id}`,
+        `https://geoduke.runasp.net/api/admin/careermessages/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -68,18 +62,6 @@ const ContactMessage = () => {
     }
   };
 
-  const handleShowMore = (msg, name) => {
-    setModalMessage(msg);
-    setModalTitle(name);
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-    setModalMessage("");
-    setModalTitle("");
-  };
-
   const handlePrev = () => {
     if (page > 1) setPage(page - 1);
   };
@@ -88,8 +70,8 @@ const ContactMessage = () => {
   };
 
   return (
-    <div className="min-h-screen  py-10 px-4 bg-white">
-      <h1 className="text-2xl font-bold text-primary mb-8">Contact Messages</h1>
+    <div className="min-h-screen py-10 px-4 bg-white">
+      <h1 className="text-2xl font-bold text-primary mb-8">Career Messages</h1>
       {loading ? (
         <div className="flex flex-col items-center justify-center py-20">
           <span className="animate-spin inline-block w-10 h-10 border-4 border-primary border-t-transparent rounded-full mb-4"></span>
@@ -103,8 +85,8 @@ const ContactMessage = () => {
                 <th className="py-3 px-4 font-semibold text-sm">Name</th>
                 <th className="py-3 px-4 font-semibold text-sm">Email</th>
                 <th className="py-3 px-4 font-semibold text-sm">Phone</th>
-                <th className="py-3 px-4 font-semibold text-sm">Message</th>
-                <th className="py-3 px-4 font-semibold text-sm">Date</th>
+                <th className="py-3 px-4 font-semibold text-sm">Job Title</th>
+                <th className="py-3 px-4 font-semibold text-sm">CV</th>
                 <th className="py-3 px-4 font-semibold text-sm">Action</th>
               </tr>
             </thead>
@@ -112,7 +94,7 @@ const ContactMessage = () => {
               {messages.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="text-center py-8 text-gray-400">
-                    No contact messages found.
+                    No career messages found.
                   </td>
                 </tr>
               ) : (
@@ -132,25 +114,23 @@ const ContactMessage = () => {
                     <td className="py-2.5 px-4 text-gray-700 font-medium">
                       {msg.phone}
                     </td>
-                    <td className="py-2.5 px-4 text-gray-700 max-w-xs break-words font-medium">
-                      {msg.message.length > 100 ? (
-                        <>
-                          {msg.message.slice(0, 100)}...
-                          <button
-                            className="ml-2 text-primary underline text-xs font-semibold"
-                            onClick={() =>
-                              handleShowMore(msg.message, msg.name)
-                            }
-                          >
-                            Show More
-                          </button>
-                        </>
-                      ) : (
-                        msg.message
-                      )}
+                    <td className="py-2.5 px-4 text-gray-700 font-medium">
+                      {msg.jobTitle}
                     </td>
-                    <td className="py-2.5 px-4 text-xs text-gray-400 font-medium">
-                      {msg.createdAt?.split("T")[0]}
+                    <td className="py-2.5 px-4 text-center">
+                      {msg.asset?.url ? (
+                        <a
+                          href={msg.asset.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-block px-3 py-1 bg-primary text-white rounded hover:bg-primary-dark transition text-xs font-semibold"
+                          title="Preview or Download CV"
+                        >
+                          View CV
+                        </a>
+                      ) : (
+                        <span className="text-gray-400 text-xs">No CV</span>
+                      )}
                     </td>
                     <td className="py-2.5 px-4">
                       <button
@@ -188,29 +168,8 @@ const ContactMessage = () => {
           </div>
         </div>
       )}
-      {/* Modal for full message */}
-      <Modal
-        isOpen={showModal}
-        onRequestClose={closeModal}
-        contentLabel="Full Message"
-        className="max-w-lg w-full mx-auto mt-24 bg-white rounded-xl shadow-lg p-8 outline-none overflow-y-auto"
-        overlayClassName="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
-      >
-        <h2 className="text-xl font-bold mb-4 text-primary flex items-center justify-between">
-          Message from: {modalTitle}
-          <button
-            onClick={closeModal}
-            className="text-gray-400 hover:text-red-500 text-2xl"
-          >
-            &times;
-          </button>
-        </h2>
-        <div className="text-gray-800 whitespace-pre-line break-words">
-          {modalMessage}
-        </div>
-      </Modal>
     </div>
   );
 };
 
-export default ContactMessage;
+export default CareerMessage;
