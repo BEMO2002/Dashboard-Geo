@@ -200,22 +200,14 @@ const Solutions = () => {
     }
     try {
       if (editMode && selectedId) {
-        await axios.put(
-          "https://api.geoduke.com/admin/solutions",
-          formData,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        await axios.put("https://api.geoduke.com/admin/solutions", formData, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         toast.success("Solution updated successfully!");
       } else {
-        await axios.post(
-          "https://api.geoduke.com/admin/solutions",
-          formData,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        await axios.post("https://api.geoduke.com/admin/solutions", formData, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         toast.success("Solution added successfully!");
       }
       fetchSolutions(currentPage);
@@ -232,12 +224,9 @@ const Solutions = () => {
     if (!window.confirm("Are you sure you want to delete this solution?"))
       return;
     try {
-      await axios.delete(
-        `https://api.geoduke.com/admin/solutions/${id}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await axios.delete(`https://api.geoduke.com/admin/solutions/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       toast.success("Solution deleted successfully!");
       fetchSolutions(currentPage);
     } catch {

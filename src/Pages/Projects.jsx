@@ -156,22 +156,14 @@ const Projects = () => {
     }
     try {
       if (editMode && selectedId) {
-        await axios.put(
-          "https://api.geoduke.com/admin/projects",
-          formData,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        await axios.put("https://api.geoduke.com/admin/projects", formData, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         toast.success("Project updated successfully!");
       } else {
-        await axios.post(
-          "https://api.geoduke.com/admin/projects",
-          formData,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        await axios.post("https://api.geoduke.com/admin/projects", formData, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         toast.success("Project added successfully!");
       }
       fetchProjects(currentPage);
@@ -188,12 +180,9 @@ const Projects = () => {
     if (!window.confirm("Are you sure you want to delete this project?"))
       return;
     try {
-      await axios.delete(
-        `https://api.geoduke.com/admin/projects/${id}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await axios.delete(`https://api.geoduke.com/admin/projects/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       toast.success("Project deleted successfully!");
       fetchProjects(currentPage);
     } catch {
@@ -354,7 +343,6 @@ const Projects = () => {
               value={form.value}
               onChange={handleChange}
               className="w-full border rounded px-3 py-2"
-              required
             />
           </div>
           <div>
