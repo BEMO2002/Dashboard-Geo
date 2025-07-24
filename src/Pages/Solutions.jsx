@@ -12,7 +12,7 @@ const initialForm = {
   title: "",
   description: "",
   overview: "",
-  systemComponents: "",
+  KeyFeatures: "",
   imageFiles: [],
   assetFiles: [],
 };
@@ -274,7 +274,7 @@ const Solutions = () => {
                     Overview: {item.overview}
                   </div>
                   <div className="text-sm text-gray-500 mb-1 line-clamp-4">
-                    System Components: {item.systemComponents}
+                    Key Features: {item.KeyFeatures}
                   </div>
                   <div className="text-xs text-gray-400 mb-2">
                     {item.createdAt?.split("T")[0]}
@@ -409,20 +409,16 @@ const Solutions = () => {
               onChange={handleChange}
               className="w-full border rounded px-3 py-2"
               rows={2}
-              required
             />
           </div>
           <div>
-            <label className="block mb-1 font-semibold">
-              System Components
-            </label>
+            <label className="block mb-1 font-semibold">Key Features</label>
             <textarea
-              name="systemComponents"
-              value={form.systemComponents}
+              name="KeyFeatures"
+              value={form.KeyFeatures}
               onChange={handleChange}
               className="w-full border rounded px-3 py-2"
               rows={2}
-              required
             />
           </div>
           <div>
