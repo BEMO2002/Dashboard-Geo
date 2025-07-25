@@ -12,7 +12,7 @@ const initialForm = {
   title: "",
   description: "",
   overview: "",
-  KeyFeatures: "",
+  keyFeatures: "",
   imageFiles: [],
   assetFiles: [],
 };
@@ -62,7 +62,7 @@ const Solutions = () => {
         title: solution.title,
         description: solution.description,
         overview: solution.overview,
-        systemComponents: solution.systemComponents,
+        keyFeatures: solution.keyFeatures,
         imageFiles: [],
         assetFiles: [],
       });
@@ -178,7 +178,7 @@ const Solutions = () => {
     formData.append("Title", form.title);
     formData.append("Description", form.description);
     formData.append("Overview", form.overview);
-    formData.append("SystemComponents", form.systemComponents);
+    formData.append("keyFeatures", form.keyFeatures);
     // Only new images
     if (imagePreviews.length > 0) {
       imagePreviews.forEach((img) => {
@@ -274,7 +274,7 @@ const Solutions = () => {
                     Overview: {item.overview}
                   </div>
                   <div className="text-sm text-gray-500 mb-1 line-clamp-4">
-                    Key Features: {item.KeyFeatures}
+                    KeyFeatures: {item.keyFeatures}
                   </div>
                   <div className="text-xs text-gray-400 mb-2">
                     {item.createdAt?.split("T")[0]}
@@ -414,8 +414,8 @@ const Solutions = () => {
           <div>
             <label className="block mb-1 font-semibold">Key Features</label>
             <textarea
-              name="KeyFeatures"
-              value={form.KeyFeatures}
+              name="keyFeatures"
+              value={form.keyFeatures}
               onChange={handleChange}
               className="w-full border rounded px-3 py-2"
               rows={2}
